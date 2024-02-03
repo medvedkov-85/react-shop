@@ -1,26 +1,25 @@
+import { useContext } from "react";
+import { ShopContext } from "../context";
+
 function BasketItem(props) {
-    const {
-        id,
-        name,
-        price,
-        quantity,
-        removeFromBasket = Function.prototype,
-        handleChangeCount = Function.prototype,
-    } = props;
+    const { id, name, price, quantity } = props;
+
+    const { removeFromBasket, handleIncrementCount, handleDecrementCount } =
+        useContext(ShopContext);
 
     return (
         <li className='collection-item'>
             <span>{name} x </span>
             <button
                 className='button-basket-count'
-                onClick={() => handleChangeCount(id)}
+                onClick={() => handleIncrementCount(id)}
             >
                 +
             </button>
             <span>{quantity}</span>
             <button
                 className='button-basket-count'
-                onClick={() => handleChangeCount(id, false)}
+                onClick={() => handleDecrementCount(id, false)}
             >
                 -
             </button>
